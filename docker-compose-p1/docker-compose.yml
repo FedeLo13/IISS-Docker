@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  drupal:
+    image: drupal:latest
+    ports:
+      - "81:80"
+    depends_on:
+      - mysql
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_DATABASE=mi_BD
+      - MYSQL_USER=fedelo13
+      - MYSQL_PASSWORD=1234
+    volumes:
+      - drupal_data:/var/www/html
+
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=mi_BD
+      - MYSQL_USER=fedelo13
+      - MYSQL_PASSWORD=1234
+      - MYSQL_ROOT_PASSWORD=1234
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  drupal_data:
+  mysql_data:

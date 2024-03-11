@@ -1,0 +1,27 @@
+version: '1'
+
+services:
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - "82:80"
+    networks:
+      - redDocker
+    environment:
+      - WORDPRESS_DB_HOST=mariadb
+      - WORDPRESS_DB_NAME=mi_BD
+      - WORDPRESS_DB_USER=fedelo13
+      - WORDPRESS_DB_PASSWORD=1234
+
+  mariadb:
+    image: mariadb:latest
+    networks:
+      - redDocker
+    environment:
+      - MYSQL_DATABASE=mi_BD
+      - MYSQL_USER=fedelo13
+      - MYSQL_PASSWORD=1234
+      - MYSQL_ROOT_PASSWORD=1234
+
+networks:
+  redDocker:
